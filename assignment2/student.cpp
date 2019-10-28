@@ -12,7 +12,7 @@ public:
 	Student& operator=(const Student& s);
 	string getLevel() const;
 	string getId() const;
-	getName() const;
+	string getName() const;
 	string getDateOfAction() const; //return as Www Mmm dd hh:mm:ss yyyy
 	Time getTimeOfAction() const; //return date_of_action in seconds
 	string getStatus() const;
