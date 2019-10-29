@@ -6,3 +6,5 @@ private:
   Course* courses; //pointer to array of courses
 public:
   Instructor();
+  Instructor(string name, string status, Course* crs, int num);
+  Instructor(const Instructor& i);
