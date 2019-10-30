@@ -12,3 +12,13 @@ public:
   Course(const Course& c);
   Course& operator=(const Course& c);
   ~Course();
+  Student* getStudent() const;
+  string getCourseNumber() const;
+  string getCourseName() const;
+  string getSemester() const;
+  string getYear() const; //return the year of the semester (assume to be the year of the last date to enroll)
+  int getNumberOfEnrollment() const;
+  string getLastDateToEnroll() const; //return as Www Mmm dd hh:mm:ss yyyy
+  Time getTimeLastDateToEnroll() const; //return last_date_to_enroll in seconds
+  void setNumberOfEnrollment(int ne);
+  void setRoster(Student* stdts);
