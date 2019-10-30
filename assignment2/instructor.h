@@ -19,3 +19,6 @@ public:
   int findStudent(const Student& s, const Course& c); //return 0 if a student is not found. Otherwise, return 1.
   int addCourse(const Course& c); //return -1 if course already exists; return 0 if the numOfCoursesTaught reaches MAXCOURSE. Otherwise, add the course and return 1.
   int findCourse(const Course& c); //return 0 if a course is not found. Otherwise, return 1.
+
+
+int Instructor :: addStudent(const Student&, const Course&)
