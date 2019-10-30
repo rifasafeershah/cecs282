@@ -21,4 +21,62 @@ public:
   int findCourse(const Course& c); //return 0 if a course is not found. Otherwise, return 1.
 
 
-int Instructor :: addStudent(const Student&, const Course&)
+int Instructor :: addStudent(const Student&, const Course& crs)
+{
+  int idx_c = findCourse(crs);
+  if (idx_c > -1)
+  {
+    Course c = Course (idx_c);
+    int idx_c ...
+      .
+      .
+      .
+  else
+  {
+    int val = c;
+    int n = c.getNumberOfEnrollment();
+    if n >= CAPACITY
+    {
+      val = 0;
+      Student* ptr = new Student(n+1);
+      Student* tmp = c.getStudent();
+      for (int i = 0; i < n; i++)
+      {
+        ptr[i] = tmp[i];
+      }
+      ptr[n] = s;
+      Time act = s.getTimeOfAction();
+      Time last = c.getTimeLastDateToEnroll();
+        .
+        .
+        .
+    else
+    {
+      val = 1;
+      Student* tmp = c.getStudent();
+      tmp[n] = s;
+      Time act = s.getTimeOfAction;
+      Time last = s.getTimeLastDateToEnroll();
+      if (act.compareTime(last) == -1 ...
+          .
+          .
+          .
+          
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
