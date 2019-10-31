@@ -61,22 +61,28 @@ int Instructor :: addStudent(const Student&, const Course& crs)
           .
           .
           .
-          
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+int Instructor :: dropStudent(const Student& s, const Course& crs, droptime)
+{
+  int idx_c = findCourses(crs);
+  if (idx_C > -1)
+  {
+    Course c = Course (idx_c);
+    int idx_s = findStudent(s,c);
+    if (idx_s <= -1)
+    {
+      return 0;
+    }
+    else
+    {
+      Student* tmp = c.getStudent();
+      Time act = tmp[idx_s].getTimeOfAction();
+      if (droptime.compareTime(act) == -1)
+      {
+        return 0;
+      }
+      else
+      {
+        .
+        .
+        .  
+int Instructor ...
