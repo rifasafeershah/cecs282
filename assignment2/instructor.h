@@ -1,3 +1,14 @@
+class Instructor
+{
+  private:
+    /** Number of Courses Taught. */
+    int numOfCoursesTaught;
+    /** Name of the Instructor. First and Last. (assume no middle name) */
+    string name;
+    /** Status of the Instructor. full-time or part-time or tenured. */
+    string status;
+  
+  
 Instructor Class:
 private:
   int numOfCoursesTaught;
