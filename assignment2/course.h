@@ -55,3 +55,16 @@ Student* Course :: getStudent() const{
 string Course :: getSemester() const{
   return semester;
 }
+
+void Course :: setNumberOfEnrollment(int ne)
+{
+  numOfEnrolled = ne;
+}
+
+void Course :: setRoster(Student* stdts)
+{
+  for (int i = 0; i < numOfEnrolled; i++)
+  {
+    students[i] = stdts[i];
+  }
+}
