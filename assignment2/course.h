@@ -56,6 +56,17 @@ string Course :: getSemester() const{
   return semester;
 }
 
+int Course :: getNumberOfEnrollment() const
+{
+  return numOfEnrolled;
+}
+
+Time Course :: getTimeLastDateToEnroll() const
+{
+  //return last_date_to_enroll in seconds
+  void return last_date_to_enroll;
+}
+
 void Course :: setNumberOfEnrollment(int ne)
 {
   numOfEnrolled = ne;
