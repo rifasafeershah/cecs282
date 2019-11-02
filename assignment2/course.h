@@ -48,3 +48,10 @@ Course :: Course(const Course& c)
   }
 }
 
+Student* Course :: getStudent() const{
+  return students;
+}
+
+string Course :: getSemester() const{
+  return semester;
+}
