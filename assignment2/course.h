@@ -1,3 +1,10 @@
+class Course
+{
+  private:
+    int numOfEnrolled;
+    string courseNumber;
+    string courseName;
+  
 Course Class:
 private:
   int numOfEnrolled;
