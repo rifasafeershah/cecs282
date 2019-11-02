@@ -7,6 +7,8 @@ class Instructor
     string name;
     /** Status of the Instructor. full-time or part-time or tenured. */
     string status;
+    /** Pointer to Array of courses. */
+    Course* courses;
   
   
 Instructor Class:
