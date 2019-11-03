@@ -36,4 +36,16 @@ string Time :: getYear() const
 {
   struct tm* nowLocal;
   char buffer[80];
+  nowLocal = localtime(&secs);
+  strftime(buffer, 80, "%y", nowLocal);
+  return buffer;
+}
+
+int Time :: compareTime(const Time &t)
+{
+  int difference = secs - t.secs;
+  if (difference == 0)
+  {
+    return 0;
+  }
   
