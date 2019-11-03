@@ -1,10 +1,3 @@
-class Course
-{
-  private:
-    int numOfEnrolled;
-    string courseNumber;
-    string courseName;
-  
 Course Class:
 private:
   int numOfEnrolled;
@@ -29,60 +22,3 @@ public:
   Time getTimeLastDateToEnroll() const; //return last_date_to_enroll in seconds
   void setNumberOfEnrollment(int ne);
   void setRoster(Student* stdts);
-
-//Overload
-Course :: Course(string num, string name, string sem, Time last_date, Student* stdts, int numOfEnroll)
-{
-  this -> courseNumber = num;
-  this -> courseName = name;
-  this -> semester = sem;
-  this -> last_date_to_enroll = last_date;
-  this -> numOfEnrolled = numOfEnroll;
-  setRoster(stdts);
-}
-
-//Copy
-Course :: Course(const Course& c)
-{
-  (*this).courseNumber = c.courseNumber;
-  (*this).courseName = c.courseName;
-  (*this).semester = c.semester;
-  (*this).numOfEnrolled = c.numOfEnrolled;
-  
-  for (int i = 0; i < numOfEnrolled; i++)
-  {
-    students[i] = c.students[i];
-  }
-}
-
-Student* Course :: getStudent() const{
-  return students;
-}
-
-string Course :: getSemester() const{
-  return semester;
-}
-
-int Course :: getNumberOfEnrollment() const
-{
-  return numOfEnrolled;
-}
-
-Time Course :: getTimeLastDateToEnroll() const
-{
-  //return last_date_to_enroll in seconds
-  void return last_date_to_enroll;
-}
-
-void Course :: setNumberOfEnrollment(int ne)
-{
-  numOfEnrolled = ne;
-}
-
-void Course :: setRoster(Student* stdts)
-{
-  for (int i = 0; i < numOfEnrolled; i++)
-  {
-    students[i] = stdts[i];
-  }
-}
