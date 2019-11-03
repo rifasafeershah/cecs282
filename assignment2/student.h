@@ -1,10 +1,3 @@
-class Student
-{
-	private:
-		string level;
-		string id:
-		string name;
-	
 Student Class:
 private:
 	string level; //Freshman, Sophomore, Junior, Senior
