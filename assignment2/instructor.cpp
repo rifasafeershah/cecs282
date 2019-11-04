@@ -72,18 +72,54 @@ string Instructor::getStatus() const
 }
 
 /* Get Student Status */
+string Instructor::getStudentStatus(const Student& s, const Course& c) const
+{
+	Student* stud = c.getStudent();
+	string studStat = "";
+	for (int i = 0; i < c.getNumberOfEnrollment(); i++)
+	{
+		if ((stud + i)->getId() == s.getId())
+		{
+			studStat = (stud + i)->getStatus();
+		}
+	}
+	delete stud;
+	return studStat;
+}
+
 
 
 /* Add Student */
 
-int Instructor::addStudent(const Student&, const Course& crs)
-
+int Instructor::addStudent(const Student& s, Course& c)
 {
+	int course = findCourse(c);
+	if (course == 0)
+	{
+		return -1;
+	}
+	else
+	{
+		int student = findStudent(s, c);
+		if (student == 0)
+		{
+			int cap = c.getNumberOfEnrollment();
+			if (cap >= CAPACITY)
+			{
+				Student* ptr = new Student[cap + 1];
+				Student* temp = c.getStudent();
+				for (int i = 0; i < cap; i++)
+				{
+					ptr[i] = temp[i];
+				}
+				ptr[cap] = s;
+				ptr[cap].setStatus("Added");
+				c.setNumberOfEnrollment(cap + 1);
 
-	int idx_c = findCourse(crs);
-
-	if (idx_c > -1)
-
+			}
+		}
+	}
+}
 	{
 
 		Course c = Courses(idx_c);
