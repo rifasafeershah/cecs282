@@ -116,7 +116,21 @@ int Instructor::addStudent(const Student& s, Course& c)
 				ptr[cap].setStatus("Added");
 				c.setNumberOfEnrollment(cap + 1);
 
+				if (s.getTimeOfAction().compareTime(c.getTimeLastDateToEnroll()) == -1 || s.getTimeOfAction().compareTime(c.getTimeLastDateToEnroll()) == 0)
+				{
+					ptr[cap].setStatus("Enrolled");
+					c.setRoster(ptr);
+				}
+				delete temp;
+				return 1;
 			}
+			else
+			{
+				Student* ptr = c.getStudent();
+				ptr[cap] = s;
+				ptr[cap].setStatus("Added");
+				c.setNumberOfEnrollment(cap + 1);
+
 		}
 	}
 }
