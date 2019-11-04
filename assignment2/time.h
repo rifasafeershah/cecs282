@@ -1,4 +1,7 @@
-Time Class:
+#include <ctime>
+
+using namespace std;
+class Time {
 private:
 	time_t secs; //time in seconds. if secs = 0, it represents Jan 1st, 1970
 public:
@@ -9,3 +12,4 @@ public:
 	string getMMDDYYYY() const; //return time in the following format MM/DD/YYYY
 	string getYear() const; //return year of time.
 	int compareTime(const Time& t); //return -1 if less than, 0 if equal, and 1 if more than
+};
