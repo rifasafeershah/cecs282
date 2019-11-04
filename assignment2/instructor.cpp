@@ -1,5 +1,6 @@
 #include "Instructor.h"
 
+/* Add Student */
 int Instructor :: addStudent(const Student&, const Course& crs)
 {
   int idx_c = findCourse(crs);
@@ -59,6 +60,7 @@ int Instructor :: addStudent(const Student&, const Course& crs)
   }
 }
 
+/* Drop Student */
 int Instructor :: dropStudent(const Student& s, const Course& crs, Time dropTime)
 {
   int idx_c = findCourse(crs);
@@ -86,4 +88,19 @@ int Instructor :: dropStudent(const Student& s, const Course& crs, Time dropTime
       }
     }
   }
+}
+
+/* Find Student */
+int Instructor :: findStudent(const Student& s, const Course& c)
+{
+}
+
+/* Add Course */
+int Instructor :: addCourse(const Course& c)
+{
+}
+
+/* Find Course */
+int Instructor :: findCourse(const Course& c)
+{
 }
