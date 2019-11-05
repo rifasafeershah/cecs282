@@ -1,3 +1,8 @@
+#ifndef COURSE_H
+#define COURSE_H
+#include "Time.h"
+#include "Student.h"
+
 using namespace std;
 
 class Course {
@@ -7,7 +12,7 @@ class Course {
 		string courseName; //e.g. CECS 282
 		string semester; //Fall, Winter, Spring, Summer
 		Time last_date_to_enroll; //time in secs
-		Students* students; //pointer to array of students
+		Student* students; //pointer to array of students
 	public:
 		Course();
 		Course(string num, string name, string sem, Time last_date, Student* stdts, int numOfEnroll);
@@ -25,3 +30,5 @@ class Course {
 		void setNumberOfEnrollment(int ne);
 		void setRoster(Student* stdts);
 };
+
+#endif
