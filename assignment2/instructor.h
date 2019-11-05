@@ -1,4 +1,7 @@
+#ifndef INSTRUCTOR_H
+#define INSTRUCTOR_H
 #include <string>
+#include "Instructor.h"
 #include "Course.h"
 #include "Student.h"
 #include "Time.h"
@@ -29,3 +32,4 @@ class Instructor {
 		int addCourse(const Course& c); //return -1 if course already exists; return 0 if the numOfCoursesTaught reaches MAXCOURSE. Otherwise, add the course and return 1.
 		int findCourse(const Course& c); //return 0 if a course is not found. Otherwise, return 1.
 };
+#endif
