@@ -7,19 +7,19 @@ using namespace std;
 Time::Time()
 {
 	secs = 0;
-}
+} //ends Default Time Constructor
 
 /* Overload Time Constructor */
 Time::Time()
 {
 	this->secs = 0;
-}
+} //ends Overload Time Constructor
 
 /* Constructor */
 Time::Time(time_t t)
 {
 	this->secs = t;
-}
+} //ends Constructor
 
 /* Copy Constructor */
 Time :: Time(const Time& t)
@@ -60,3 +60,12 @@ int Time::compareTime(const Time& t)
 	{
 		return 0;
 	}
+	else if (difference > 0)
+	{
+		return -1;
+	}
+	else
+	{
+		return 1;
+	}
+}
