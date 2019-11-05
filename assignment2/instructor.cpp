@@ -87,10 +87,7 @@ string Instructor::getStudentStatus(const Student& s, const Course& c) const
 	return studStat;
 }
 
-
-
 /* Add Student */
-
 int Instructor::addStudent(const Student& s, Course& c)
 {
 	int course = findCourse(c);
@@ -127,207 +124,109 @@ int Instructor::addStudent(const Student& s, Course& c)
 			else
 			{
 				Student* ptr = c.getStudent();
-				ptr[cap] = s;
-				ptr[cap].setStatus("Added");
-				c.setNumberOfEnrollment(cap + 1);
+ptr[cap] = s;
+ptr[cap].setStatus("Added");
+c.setNumberOfEnrollment(cap + 1);
 
-		}
-	}
+if (s.getTimeOfAction().compareTime(c.getTimeLastDateToEnroll()) == -1 || s.getTimeOfAction().compareTime(c.getTimeLastDateToEnroll()) == 0)
+{
+	ptr[cap].setStatus("Enrolled");
 }
-	{
-
-		Course c = Courses(idx_c);
-
-		int idx_c ...
-
-			.
-
-			.
-
-			.
-
-	}
-
-	else
-
-	{
-
-		int val = c;
-
-		int n = c.getNumberOfEnrollment();
-
-		if n >= CAPACITY
-
-		{
-
-		  val = 0;
-
-		  Student* ptr = new Student(n + 1);
-
-		  Student* tmp = c.getStudent();
-
-		  for (int i = 0; i < n; i++)
-
-		  {
-
-			ptr[i] = tmp[i];
-
-		  }
-
-		  ptr[n] = s;
-
-		  Time act = s.getTimeDateOfAction();
-
-		  Time last = c.getTimeLastDateToEnroll();
-
-			.
-
-			.
-
-			.
-
-			  if (idx_c > -1)
-
-			  {
-
-				Course c = Courses(idx_c);
-
-				int idx_s = findStudent(s,c);
-
-				if (idx_s > -1)
-
-				{
-
-				  .
-
-				  .
-
-				  .
-
-				}
-
-			  }
-
-		}
-
-		else
-
-		{
-
-			val = 1;
-
-			Student* ptr = c.getStudent();
-
-			tmp[n] = s;
-
-			Time act = s.getTimeOfAction();
-
-			Time last = c.getTimeLastDateToEnroll();
-
-			if (act.compareTime(last) == -1)
-
-			{
-
-				.
-
-					.
-
-					.
-
+c.setRoster(ptr);
+return 1;
 			}
-
 		}
-
+		else
+		{
+		return -1;
+		}
 	}
-
 }
-
-
 
 /* Drop Student */
-
-int Instructor::dropStudent(const Student& s, const Course& crs, Time dropTime)
-
+int Instructor::dropStudent(const Student& s, Course& c, Time t)
 {
-
-	int idx_c = findCourse(crs);
-
-	if (idx_c > -1)
-
+	int course = findCourse(c);
+	if (course == 0)
 	{
-
-		Course c = Courses(idx_c);
-
-		int idx_s = findStudent(s, c);
-
-		if (idx_s <= -1)
-
-		{
-
-			return 0;
-
-		}
-
-		else
-
-		{
-
-			Student* tmp = c.getStudent();
-
-			Time act = tmp[idx_s].getTimeOfAction();
-
-			if droptime.compareTime(act) == -1)
-
-	  {
-
-	  return 0;
-
-	  }
-
-			else
-
-			{
-
-				.
-
-					.
-
-					.
-
-			}
-
-		}
-
+		return 0;
 	}
-
+	else
+	{
+		int n = findStudent(s, c);
+		if (n == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			Student* ptr = c.getStudent();
+			for (int i = 0; i < c.getNumberOfEnrollment(); i++)
+			{
+				if ((ptr + i)->getId() == s.getId())
+				{
+					(ptr + i)->setStatus("Dropped");
+				}
+			}
+			return 1;
+		}
+	}
 }
-
-
 
 /* Find Student */
-
 int Instructor::findStudent(const Student& s, const Course& c)
-
 {
-
+	Student* roster = c.getStudent();
+	for (int i = 0; i < sizeof(roster); i++)
+	{
+		if ((roster + i)->getId() == s.getId())
+		{
+			return 1;
+		}
+	}
+	delete roster;
+	return 0;
 }
-
-
 
 /* Add Course */
-
 int Instructor::addCourse(const Course& c)
-
 {
-
+	int c_exists = findCourse(c);
+	if (c_exists == 1)
+	{
+		return -1;
+	}
+	else if (numOfCoursesTaught == MAXCOURSE)
+	{
+		Course* ptr = new Course[numOfCoursesTaught + 1];
+		Course* temp = courses;
+		for (int i = 0; i < numOfCoursesTaught; i++)
+		{
+			ptr[i] = temp[i];
+		}
+		ptr[numOfCoursesTaught] = c;
+		numOfCoursesTaught++;
+		this->courses = ptr;
+		delete temp;
+		return 0;
+	}
+	else
+	{
+		courses[numOfCoursesTaught] = c;
+		numOfCoursesTaught++;
+		return 1;
+	}
 }
 
-
-
 /* Find Course */
-
 int Instructor::findCourse(const Course& c)
-
 {
-
+	for (int i = 0; i < numOfCoursesTaught; i++)
+	{
+		if ((courses + i)->getCourseNumber() == c.getCourseNumber())
+		{
+			return 1;
+		}
+	}
+	return 0;
 }
