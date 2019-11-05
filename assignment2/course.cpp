@@ -125,10 +125,8 @@ string Course::getSemester() const {
 }
 
 /* Get Year */
-string Course::getYear() const { //return the year of the semester (assume to be the year of the last date to enroll)   
-
-//not finished
-
+string Course::getYear() const { //return the year of the semester (assume to be the year of the last date to enroll)
+	return last_date_to_enroll.getYear();
 }
 
 /* Get Number of Enrollment */
