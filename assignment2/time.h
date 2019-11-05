@@ -1,3 +1,5 @@
+#ifndef TIME_H
+#define TIME_H
 #include <ctime>
 
 using namespace std;
@@ -13,3 +15,5 @@ public:
 	string getYear() const; //return year of time.
 	int compareTime(const Time& t); //return -1 if less than, 0 if equal, and 1 if more than
 };
+
+#endif
