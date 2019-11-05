@@ -1,3 +1,5 @@
+#ifndef STUDENT_H
+#define STUDENT_H
 using namespace std;
 class Student {
 	private:
@@ -22,3 +24,5 @@ class Student {
 		void setStatus(string stat);
 		void setTimeOfAction(Time act);
 };
+
+#endif
