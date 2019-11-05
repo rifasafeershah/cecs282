@@ -18,10 +18,10 @@ Student:: Student()
 /* Overload Constructor */
 Student :: Student(string id, string name, string level, Time date_of_action)
 {
-	this -> id = id;
-	this -> name = name;
-	this -> level = level;
-	this -> date_of_action = date_of_action;
+	this->id = id;
+	this->name = name;
+	this->level = level;
+	this->date_of_action = date_of_action;
 }
 
 
