@@ -4,16 +4,16 @@
 
 using namespace std;
 
-extern int const MAXCOURSE = 3;
+extern int const MAXCOURSE;
 extern int const CAPACITY;
 
 /* Default Constructor */
 Instructor::Instructor()
 {
-	this->numOfCoursesTaught = 0;
-	this->name = "EMPTY";
-	this->status = "EMPTY";
-	this->courses = new Course[MAXCOURSE];
+	this->name = "EMPTY"; //name of the instructor
+	this->numOfCoursesTaught = 0; //number of courses taught
+	this->status = "EMPTY"; //status of the instructor
+	this->courses = new Course[MAXCOURSE]; //pointer pointing to the array of courses
 }
 
 /* Overload Constructor */
@@ -21,25 +21,26 @@ Instructor::Instructor(string name, string status, Course* crs, int num)
 {
 	this->name = name;
 	this->status = status;
-	this->numOfCoursesTaught = num;
-	for (int i = 0; i < MAXCOURSE; i++)
+	this->courses = courses;
+	this->numOfCoursesTaught = num; //number of courses taught
+	for (int i = 0; i < numOfCoursesTaught; i++)
 	{
 		courses[i] = crs[i];
 	}
-}
+} //ends Overload Constructor
 
 /* Copy Constructor */
 Instructor::Instructor(const Instructor& i)
 {
-	(*this).name = i.name;
-	(*this).status = i.status;
-	(*this).courses = i.courses;
-	(*this).numOfCoursesTaught = i.numOfCoursesTaught;
+	(*this).name = i.name; //name of the instructor
+	(*this).status = i.status; //status of the instructor
+	(*this).courses = i.courses; //name of the course
+	(*this).numOfCoursesTaught = i.numOfCoursesTaught; //number of courses taught
 	for (int x = 0; x < numOfCoursesTaught; x++)
 	{
 		courses[x] = i.courses[x];
 	}
-}
+} //ends Copy Constructor
 
 /* Destrcutor */
 Instructor :: ~Instructor()
@@ -47,29 +48,29 @@ Instructor :: ~Instructor()
 	delete[] courses;
 }
 
+/* Get Name */
+string Instructor::getName() const
+{
+	return name; //returns name of the instructor
+} //ends Name
+
 /* Get Course */
 Course* Instructor::getCourse() const
 {
-	return courses;
-}
+	return courses; //returns name of the course
+} //ends Get Course
 
 /* Get Number of Courses Taught */
 int Instructor::getNumberOfCoursesTaught() const
 {
-	return numOfCoursesTaught;
-}
-
-/* Get Name */
-string Instructor::getName() const
-{
-	return name;
-}
+	return numOfCoursesTaught; //returns number of courses taught
+} //ends Get Number of Courses Taught
 
 /* Get Status */
 string Instructor::getStatus() const
 {
-	return status;
-}
+	return status; //returns status of the instructor
+} //ends Get Status
 
 /* Get Student Status */
 string Instructor::getStudentStatus(const Student& s, const Course& c) const
@@ -83,9 +84,9 @@ string Instructor::getStudentStatus(const Student& s, const Course& c) const
 			studStat = (stud + i)->getStatus();
 		}
 	}
-	delete stud;
-	return studStat;
-}
+	delete stud; //deletes student
+	return studStat; //returns status of the student
+} //ends Get Student Status
 
 /* Add Student */
 int Instructor::addStudent(const Student& s, Course& c)
@@ -141,7 +142,7 @@ return 1;
 		return -1;
 		}
 	}
-}
+} //ends Add Student
 
 /* Drop Student */
 int Instructor::dropStudent(const Student& s, Course& c, Time t)
@@ -165,28 +166,13 @@ int Instructor::dropStudent(const Student& s, Course& c, Time t)
 			{
 				if ((ptr + i)->getId() == s.getId())
 				{
-					(ptr + i)->setStatus("Dropped");
+					(ptr + i)->setStatus("Dropped"); //set status to dropped
 				}
 			}
 			return 1;
 		}
 	}
-}
-
-/* Find Student */
-int Instructor::findStudent(const Student& s, const Course& c)
-{
-	Student* roster = c.getStudent();
-	for (int i = 0; i < sizeof(roster); i++)
-	{
-		if ((roster + i)->getId() == s.getId())
-		{
-			return 1;
-		}
-	}
-	delete roster;
-	return 0;
-}
+} //ends Drop Student
 
 /* Add Course */
 int Instructor::addCourse(const Course& c)
@@ -216,7 +202,7 @@ int Instructor::addCourse(const Course& c)
 		numOfCoursesTaught++;
 		return 1;
 	}
-}
+} //ends Add Course
 
 /* Find Course */
 int Instructor::findCourse(const Course& c)
@@ -229,4 +215,19 @@ int Instructor::findCourse(const Course& c)
 		}
 	}
 	return 0;
-}
+} //ends Find Course
+
+/* Find Student */
+int Instructor::findStudent(const Student& s, const Course& c)
+{
+	Student* roster = c.getStudent();
+	for (int i = 0; i < sizeof(roster); i++)
+	{
+		if ((roster + i)->getId() == s.getId())
+		{
+			return 1;
+		}
+	}
+	delete roster;
+	return 0;
+} //ends Find Student
