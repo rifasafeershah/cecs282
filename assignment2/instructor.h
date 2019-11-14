@@ -11,8 +11,8 @@ using namespace std;
 class Instructor {
 	private:
 
-		int numOfCoursesTaught;
-		string name; //formatted as First Last (assume no middle name)
+		string name; //name of the instructor (first and last)
+		int numOfCoursesTaught; //number of courses taught
 		string status; //full-time or part-time or tenured
 		Course* courses; //pointer to array of courses
 
