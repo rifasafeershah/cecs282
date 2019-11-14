@@ -2,6 +2,7 @@
 #define TIME_H
 #include <ctime>
 
+
 using namespace std;
 class Time {
 private:
