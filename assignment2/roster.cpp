@@ -5,10 +5,13 @@
 #include "Time.h"
 #include <ctime>
 #include <string>
+#include <fstream>
 
 using namespace std;
-const int CAPACITY = 2;
-const int MAXCOURSE = 3;
+//ofstream outFile("raw_data_courseNumber.txt");
+//ifstream inFile("courseName_courseNumber.txt");
+extern const int CAPACITY = 35;
+extern const int MAXCOURSE = 3;
 
 int main()
 {
@@ -93,14 +96,107 @@ int main()
 	Course* temp = inst.getCourse();
 	for (int i = 0; i < inst.getNumberOfCoursesTaught(); i++)
 	{
-		cout << inst.getStatus() << " Instructor: " << inst.getName() << endl;
-		cout << "Course Number: " << temp[i].getCourseNumber() << "\nCourse Name: " << temp[i].getCourseName() << "\n" << "Semester: " << temp[i].getSemester() << " " << temp[i].getYear() << "\n" << "Last Date To Enroll: " << temp[i].getLastDateToEnroll() << "\nNumber of enrollment: " << temp[i].getNumberOfEnrollment() << "\nMaximum Enrollment: " << CAPACITY << endl;
-		Student* tmp = temp[i].getStudent();
-		for (int j = 0; j < temp[i].getNumberOfEnrollment(); j++)
+		string CourseName = temp[i].getCourseName() + ".txt";
+		ofstream FormatFile(CourseName);
+		//get the instructor information and write into file
+		string instStatus = inst.getStatus();
+		string instName = inst.getName();
+		FormatFile << instStatus << " Instructor: " << instName << endl;
+		//get student information
+		Student* tmp2 = temp[i].getStudent();
+		//write out course information into fule
+		FormatFile << "Course Number: " << temp[i].getCourseNumber() << "\nCourse:" << temp[i].getCourseName()
+			<< "\n" << "Semester: " << temp[i].getSemester() << " " << temp[i].getYear() << "\nEnrollment: " << temp[i].getNumberOfEnrollment() <<
+			"\nMaximum Enrollment: " << CAPACITY << "\n" << "Last Date To Enroll: "
+			<< temp[i].getLastDateToEnroll() << endl;
+		//write information above students
+		FormatFile << "ID\t" << "  Last Name\t" << "First Name\t" << "Level\t" << "  Status   " << "Date" << endl;
+		//loop through every student and write each information
+		for (int s = 0; s < temp[i].getNumberOfEnrollment(); s++)
 		{
-			cout << tmp[j].getId() << " " << tmp[j].getName() << " " << tmp[j].getLevel() << " " << tmp[j].getStatus() << " " << tmp[j].getDateOfAction() << endl;
+			//break down information of the student
+			string studentName = tmp2[s].getName();
+			int indexSpace = tmp2[s].getName().find(" ");
+			string studentId = tmp2[s].getId().substr(0, 9);
+			string fName = studentName.substr(0, indexSpace);
+			string lName = studentName.substr(indexSpace + 1, studentName.length() - indexSpace);
+			string studentLevel = tmp2[s].getLevel().substr(0, 9);
+			string studentStatus = tmp2[s].getStatus().substr(0, 8);
+			string date = tmp2[s].getTimeOfAction().getMMDDYYYY();
+
+			//create conditional statements to write information in a neat format.
+			//if last name is less than 6 characters, tab twice to allign
+			if (lName.length() < 6) {
+				//if lname length is less than 6 AND lvl is sophomore, get spacing
+				if (studentLevel == "Sophomore") {
+					//if lname < 6, lvl sophomore AND dropped
+					if (studentStatus == "Dropped") {
+						FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+							<< " " << studentStatus << "  " << date << endl;
+					}
+					//if llname < 6, lvl sophomore AND Enrolled
+					else if (studentStatus == "Enrolled") {
+						FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+							<< " " << studentStatus << " " << date << endl;
+					}
+					else {
+						FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+							<< " " << studentStatus << "\t   " << date << endl;
+					}
+				}
+				//if lname length is less than 6 AND if status is dropped
+				else if (studentStatus == "Dropped") {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< " " << studentStatus << "  " << date << endl;
+				}
+				//if llname < 6, AND Enrolled
+				else if (studentStatus == "Enrolled") {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< " " << studentStatus << " " << date << endl;
+				}
+				//Only if lname length is less than 6
+				else {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< "\t  " << studentStatus << "\t   " << date << endl;
+				}
+			}
+			//if level is sophomore, change spacing
+			else if (studentLevel == "Sophomore") {
+				//if lvl is sophomore and status is dropped
+				if (studentStatus == "Dropped") {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< " " << studentStatus << "  " << date << endl;
+				}
+				//if lvl sophomore, AND Enrolled
+				else if (studentStatus == "Enrolled") {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< " " << studentStatus << " " << date << endl;
+				}
+				//only if lvl is sophomore
+				else {
+					FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+						<< " " << studentStatus << "\t   " << date << endl;
+				}
+			}
+			//if status is dropped
+			else if (studentStatus == "Dropped") {
+				FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+					<< "\t  " << studentStatus << "  " << date << endl;
+			}
+			// if the status is Enrolled
+			else if (studentStatus == "Enrolled") {
+				FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+					<< "\t  " << studentStatus << " " << date << endl;
+			}
+			//no special change to the spacing
+			else {
+				FormatFile << studentId << " " << lName.substr(0, 15) << "\t" << fName.substr(0, 15) << "\t\t" << studentLevel
+					<< "\t  " << studentStatus << "\t   " << date << endl;
+			}
 		}
-		cout << "---------------------------------------------------------------------" << endl;
+		//create divider
+		FormatFile << "---------------------------------------------------------------------" << endl;
+		FormatFile.close();
 	}
 	return 0;
 }
