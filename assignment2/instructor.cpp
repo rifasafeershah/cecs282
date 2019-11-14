@@ -75,18 +75,8 @@ string Instructor::getStatus() const
 /* Get Student Status */
 string Instructor::getStudentStatus(const Student& s, const Course& c) const
 {
-	Student* stud = c.getStudent();
-	string studStat = "";
-	for (int i = 0; i < c.getNumberOfEnrollment(); i++)
-	{
-		if ((stud + i)->getId() == s.getId())
-		{
-			studStat = (stud + i)->getStatus();
-		}
-	}
-	delete stud; //deletes student
-	return studStat; //returns status of the student
-} //ends Get Student Status
+
+}
 
 /* Add Student */
 int Instructor::addStudent(const Student& s, Course& c)
@@ -191,15 +181,15 @@ int Instructor::addCourse(const Course& c)
 			ptr[i] = temp[i];
 		}
 		ptr[numOfCoursesTaught] = c;
-		numOfCoursesTaught++;
+		numOfCoursesTaught = getNumberOfCoursesTaught() + 1;
 		this->courses = ptr;
-		delete temp;
+		//delete temp;
 		return 0;
 	}
-	else
+	else //if the course does not exist
 	{
-		courses[numOfCoursesTaught] = c;
-		numOfCoursesTaught++;
+		courses[numOfCoursesTaught] = c; //add new course to the array of courses
+		numOfCoursesTaught = getNumberOfCoursesTaught() + 1;
 		return 1;
 	}
 } //ends Add Course
